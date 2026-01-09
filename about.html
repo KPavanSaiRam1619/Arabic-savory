@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Arabic savory</title>
+    <meta name="description" content="Learn about Flavor Haven's story, our team, and our commitment to serving exceptional food with the finest ingredients.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles specific to about page */
+        .about-hero {
+            background: linear-gradient(135deg, rgba(232, 93, 4, 0.9), rgba(106, 46, 10, 0.9)),
+                        url('https://picsum.photos/seed/restaurantkitchen/1600/600.jpg') center/cover;
+            color: var(--cream-color);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .about-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--cream-color);
+        }
+        
+        .about-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .story-section {
+            padding: 5rem 2rem;
+            background-color: var(--cream-color);
+        }
+        
+        .story-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .story-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .story-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .story-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+        
+        .story-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .story-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .story-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .stats-section {
+            padding: 5rem 2rem;
+            background-color: var(--light-cream);
+        }
+        
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .stats-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .stats-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-section {
+            padding: 5rem 2rem;
+            background-color: var(--cream-color);
+        }
+        
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .team-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .team-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            background: var(--light-cream);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .team-member-image {
+            width: 100%;
+    height: 100px;          /* 🔴 controls image height */
+    overflow: hidden;
+    border-radius: 10px;
+
+    width: 100%;
+    height: 370PX;
+    object-fit: cover;      /* 🔴 prevents distortion */
+    display: block;
+        }
+        
+        .team-member-content {
+            padding: 1.5rem;
+        }
+        
+        .team-member-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .team-member-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .team-member-social {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .team-member-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: var(--cream-color);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .team-member-social a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .values-section {
+            padding: 5rem 2rem;
+            background-color: var(--light-cream);
+        }
+        
+        .values-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .values-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .values-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .value-card {
+            background: var(--cream-color);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .value-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .value-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .timeline-section {
+            padding: 5rem 2rem;
+            background-color: var(--cream-color);
+        }
+        
+        .timeline-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .timeline-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 2rem;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 2rem;
+        }
+        
+        .timeline-content {
+            background: var(--light-cream);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        
+        .timeline-description {
+            color: var(--text-light);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            top: 1.5rem;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid var(--cream-color);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -10px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -10px;
+        }
+        
+        .testimonials-section {
+    padding: 5rem 2rem;
+    background-color: var(--light-cream);
+}
+
+.testimonials-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonials-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.testimonials-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* ================= CARD ================= */
+
+.testimonial-card {
+    background: var(--cream-color);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    position: relative;
+    text-align: center; /* 🔴 IMPORTANT */
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 4rem;
+    color: var(--accent-color);
+    opacity: 0.15;
+}
+
+/* ================= TEXT ================= */
+
+.testimonial-content {
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* ================= AUTHOR ================= */
+
+.testimonial-author {
+    display: flex;
+    flex-direction: column; /* 🔴 forces vertical layout */
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Avatar wrapper */
+.testimonial-author img {
+    width: 90px;          /* 🔴 IMAGE SIZE CONTROL */
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;       /* 🔴 controls image height */
+    overflow: hidden;
+
+}
+/* Name */
+.testimonial-author h4 {
+    margin-top: 0.6rem;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+/* Role */
+.testimonial-author span {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+.author-info h4 {
+            margin-bottom: 0.25rem;
+            color: var(--text-dark);
+        }
+        
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .cta-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--cream-color);
+            text-align: center;
+        }
+        
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: var(--text-dark);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-btn-outline {
+            background: transparent;
+            border: 2px solid var(--cream-color);
+            color: var(--cream-color);
+        }
+        
+        .cta-btn-outline:hover {
+            background: var(--cream-color);
+            color: var(--text-dark);
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .story-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 50px !important;
+                padding-right: 0 !important;
+                text-align: left !important;
+            }
+            
+            .timeline-dot {
+                left: 10px !important;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-circle"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <div class="logo-text">
+                    <span class="logo-title">Flavor Haven</span>
+                    <p class="logo-tagline">The Taste of Tradition with a Touch of Innovation</p>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><button class="book-table-btn" onclick="openBookingModal()">Book Table</button></li>
+                <li><button class="cart-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                    <span class="cart-count" id="cartCount">0</span>
+                </button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Your cart is empty</p>
+                <p>Add delicious items from our menu!</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="cart-total-price" id="cartTotal">₹0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>Our Story</h1>
+            <p>From a small family kitchen to a culinary destination, Flavor Haven has been serving authentic flavors with a modern twist since 2018. Our journey is rooted in tradition, but our vision is always looking forward.</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-header">
+                <h2>Our Journey</h2>
+                <p>How a passion for food became a destination for flavor lovers</p>
+            </div>
+            <div class="story-content">
+                <div class="story-text">
+                    <p>Flavor Haven was founded in 2018 by Chef Rajesh Kumar, a culinary visionary with over 20 years of experience in fine dining. What started as a small restaurant with just 10 tables has now grown into a beloved culinary destination with locations across the city.</p>
+                    
+                    <p>Our philosophy has always been simple: honor traditional recipes while embracing innovation. We believe that food is not just about taste, but about creating memories and bringing people together.</p>
+                    
+                    <p>Today, Flavor Haven is proud to have served over 100,000 customers, received numerous awards, and built a team of passionate chefs who share our commitment to excellence.</p>
+                </div>
+                <div class="story-image">
+                    <img src="https://i.pinimg.com/736x/87/56/5f/87565f02bdd0caad4e0b3c46703f33c7.jpg" alt="Flavor Haven Restaurant Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stats-header">
+                <h2>Our Achievements</h2>
+                <p>Numbers that reflect our commitment to excellence</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="stat-number" data-target="250">0</div>
+                    <div class="stat-label">Varieties of Dishes</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-pepper-hot"></i>
+                    </div>
+                    <div class="stat-number" data-target="80">0</div>
+                    <div class="stat-label">Starters</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <div class="stat-number" data-target="40">0</div>
+                    <div class="stat-label">Drinks</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-number">4.8</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="team-container">
+            <div class="team-header">
+                <h2>Meet Our Team</h2>
+                <p>The passionate individuals behind Flavor Haven's success</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://i.pinimg.com/736x/09/54/ca/0954cad19c966f49535a04353762179e.jpg" alt="Chef Rajesh Kumar" class="team-member-image">
+                    <div class="team-member-content">
+                        <h3>Chef Rajesh Kumar</h3>
+                        <p>Founder & Head Chef</p>
+                        <p>With over 20 years of culinary experience, Chef Rajesh brings innovation to traditional recipes, inspired by regional flavors and perfected through years of hands-on mastery in professional kitchens.</p>
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://i.pinimg.com/736x/71/01/3a/71013afbe6c8bcce336c0e02ecd864bd.jpg" alt="Priya Sharma" class="team-member-image">
+                    <div class="team-member-content">
+                        <h3>Priya Sharma</h3>
+                        <p>Restaurant Manager</p>
+                        <p>Priya ensures that every guest has an exceptional dining experience at Flavor Haven, combining operational excellence with a strong focus on comfort, quality, and customer satisfaction.</p>
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://i.pinimg.com/1200x/8a/cd/f0/8acdf02f50835e846520847d522b1793.jpg" alt="Amit Patel" class="team-member-image">
+                    <div class="team-member-content">
+                        <h3>Amit Patel</h3>
+                        <p>Sous Chef</p>
+                        <p>Amit’s expertise in fusion cuisine has helped create some of our most popular dishes, combining innovation, precision, and bold flavors that elevate the menu.</p>
+                        <div class="team-member-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-container">
+            <div class="values-header">
+                <h2>Our Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Fresh Ingredients</h3>
+                    <p>We source the finest ingredients from local farms and trusted suppliers to ensure the highest quality in every dish.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Cooked with Love</h3>
+                    <p>Every dish is prepared with passion and attention to detail, ensuring a memorable dining experience.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community First</h3>
+                    <p>We believe in giving back to our community through various initiatives and partnerships with local organizations.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We're committed to sustainable practices, from reducing food waste to using eco-friendly packaging.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <h2>Our Journey</h2>
+                <p>Milestones that shaped Flavor Haven</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2018</div>
+                        <h3 class="timeline-title">The Beginning</h3>
+                        <p class="timeline-description">Flavor Haven opened its first location with just 10 tables and a team of 5 passionate individuals.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019</div>
+                        <h3 class="timeline-title">First Award</h3>
+                        <p class="timeline-description">Received "Best New Restaurant" award from the Culinary Association.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020</div>
+                        <h3 class="timeline-title">Expansion</h3>
+                        <p class="timeline-description">Opened our second location in the city center, doubling our seating capacity.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021</div>
+                        <h3 class="timeline-title">Digital Launch</h3>
+                        <p class="timeline-description">Launched our online ordering system and delivery service to reach more customers.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022</div>
+                        <h3 class="timeline-title">Milestone</h3>
+                        <p class="timeline-description">Served our 100,000th customer and received the "Excellence in Hospitality" award.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023</div>
+                        <h3 class="timeline-title">Innovation</h3>
+                        <p class="timeline-description">Introduced our farm-to-table program, partnering with local organic farms for fresh ingredients.</p>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <div class="testimonials-header">
+                <h2>What Our Customers Say</h2>
+                <p>Real experiences from our valued patrons</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"Flavor Haven is my go-to restaurant for special occasions. The food is consistently excellent, and the service is always top-notch. I've been coming here since they opened, and the quality has never wavered."</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pinimg.com/1200x/f3/e2/73/f3e2736edfba1c349d4d25ac6cfbeebc.jpg" alt="Customer" class="author-image">
+                        <div class="author-info">
+                            <h4>Meera Desai</h4>
+                            <p>Regular Customer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"As a food critic, I've visited hundreds of restaurants, but Flavor Haven stands out for its consistent quality and innovative approach to traditional dishes. The chef's special is always a delightful surprise!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pinimg.com/736x/7e/46/c6/7e46c6d2798eff446b365c5246f4c9ca.jpg" alt="Customer" class="author-image">
+                        <div class="author-info">
+                            <h4>Rohit Verma</h4>
+                            <p>Food Critic</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"I celebrated my anniversary at Flavor Haven, and it was an unforgettable experience. The staff went above and beyond to make it special, and the food was absolutely divine. Highly recommend the tasting menu!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://i.pinimg.com/736x/0e/bd/b9/0ebdb9f8cb628dc5224bd2f84a2ff9e2.jpg" alt="Customer" class="author-image">
+                        <div class="author-info">
+                            <h4>Anjali Singh</h4>
+                            <p>Regular Customer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Experience Flavor Haven Today</h2>
+            <p>Join us for a culinary journey that celebrates tradition while embracing innovation. Whether you're craving comfort food or looking to try something new, we have something for everyone.</p>
+            <div class="cta-buttons">
+                <a href="menu.html" class="cta-btn">Explore Our Menu</a>
+                <button class="cta-btn cta-btn-outline" onclick="openBookingModal()">Book a Table</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBookingModal()">
+                <i class="fas fa-times"></i>
+            </span>
+            <h2>Book Your Table</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Time</label>
+                    <input type="time" id="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <select id="guests" required>
+                        <option value="">Select</option>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5 People</option>
+                        <option value="6">6 People</option>
+                        <option value="7">7+ People</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="special-requests">Special Requests</label>
+                    <textarea id="special-requests" rows="3" placeholder="Any dietary restrictions or special requests?"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i> <span id="successText">Success!</span>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Additional JavaScript for about page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date for booking to today
+            const dateInput = document.getElementById('date');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.setAttribute('min', today);
+            }
+        });
+    </script>
+</body>
+</html>

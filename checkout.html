@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout | Arabic savory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+
+<div class="checkout-container">
+
+    <h2>Checkout</h2>
+
+    <!-- USER DETAILS -->
+    <form id="checkoutForm">
+
+        <div class="section">
+            <h3>User Details</h3>
+
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="tel" id="phone" placeholder="Mobile Number" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+        </div>
+
+        <div class="section">
+            <h3>Delivery Address</h3>
+
+            <textarea id="address" placeholder="Complete Address" required></textarea>
+        </div>
+
+        <!-- ORDER SUMMARY -->
+        <div class="section summary">
+            <h3>Order Summary</h3>
+            <div id="orderItems"></div>
+            <p class="total">Total: ₹<span id="totalAmount">0</span></p>
+        </div>
+
+        <button type="submit" id="paymentButton">Proceed to Payment</button>
+
+    </form>
+
+</div>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fff6e8;
+    }
+
+    .checkout-container {
+        max-width: 420px;
+        margin: 40px auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2, h3 {
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .section {
+        margin-bottom: 20px;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        resize: none;
+        height: 80px;
+    }
+
+    .summary {
+        background: #fff3dc;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .order-item {
+        padding: 8px 0;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .item-name {
+        font-weight: 500;
+    }
+
+    .item-price {
+        color: #555;
+    }
+
+    .total {
+        font-weight: bold;
+        text-align: right;
+        margin-top: 10px;
+        font-size: 18px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: orange;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 4px;
+        color: white;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+
+    button:hover {
+        background: #e6a500;
+    }
+
+    button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+    }
+
+    .empty-cart {
+        text-align: center;
+        padding: 20px;
+        color: #888;
+    }
+
+    .continue-shopping {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: orange;
+        text-decoration: none;
+    }
+
+    /* Payment modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    .payment-success {
+        color: #4CAF50;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border-left-color: orange;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #4CAF50;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        z-index: 1001;
+        display: none;
+    }
+</style>
+
+<script>
+    // Debug function to log localStorage content
+    function debugLocalStorage() {
+        console.log("All localStorage keys:", Object.keys(localStorage));
+        console.log("Cart data:", localStorage.getItem('cart'));
+    }
+
+    // Call debug function
+    debugLocalStorage();
+
+    // Retrieve cart data from localStorage
+    let cart = [];
+
+    // 🔴 UNIVERSAL CART DETECTOR
+    function loadCart() {
+        for (let key in localStorage) {
+            try {
+                const value = JSON.parse(localStorage.getItem(key));
+
+                // Case 1: Array of items
+                if (Array.isArray(value) && value.length && value[0].name) {
+                    cart = value;
+                    console.log("Cart found as array in key:", key);
+                    return;
+                }
+
+                // Case 2: { items: [] }
+                if (value && Array.isArray(value.items)) {
+                    cart = value.items;
+                    console.log("Cart found in .items in key:", key);
+                    return;
+                }
+
+                // Case 3: Object of items
+                if (value && typeof value === "object") {
+                    const arr = Object.values(value);
+                    if (arr.length && arr[0].name) {
+                        cart = arr;
+                        console.log("Cart found as object in key:", key);
+                        return;
+                    }
+                }
+            } catch {}
+        }
+
+        cart = [];
+        console.log("No cart found in localStorage");
+    }
+
+    loadCart();
+    console.log("FINAL CART:", cart);
+
+    const orderItems = document.getElementById("orderItems");
+    const totalAmount = document.getElementById("totalAmount");
+    const checkoutForm = document.getElementById("checkoutForm");
+    const paymentButton = document.getElementById("paymentButton");
+
+    function renderCart() {
+        orderItems.innerHTML = "";
+        let total = 0;
+
+        if (cart.length === 0) {
+            orderItems.innerHTML = `<div class="empty-cart">Your cart is empty</div>`;
+            totalAmount.textContent = "0";
+            paymentButton.disabled = true;
+            paymentButton.textContent = "Cart is Empty";
+            return;
+        }
+
+        paymentButton.disabled = false;
+        paymentButton.textContent = "Proceed to Payment";
+
+        cart.forEach(item => {
+            const div = document.createElement("div");
+            div.className = "order-item";
+            div.innerHTML = `
+                <span>${item.name} x ${item.quantity}</span>
+                <span>₹${item.price * item.quantity}</span>
+            `;
+            orderItems.appendChild(div);
+            total += item.price * item.quantity;
+        });
+
+        totalAmount.textContent = total;
+    }
+
+    renderCart();
+
+    checkoutForm.addEventListener("submit", e => {
+        e.preventDefault();
+
+        if (cart.length === 0) return;
+
+        alert("Payment Successful");
+        localStorage.clear(); // 🔥 clear EVERYTHING to avoid mismatch
+        window.location.href = "index.html";
+    });
+</script>
+</body>
+</html>

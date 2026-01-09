@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Arabic savory</title>
+    <meta name="description" content="Explore our extensive menu featuring over 250 varieties of exquisite dishes at Flavor Haven">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styles specific to menu page */
+        .menu-hero {
+            background: linear-gradient(135deg, rgba(232, 93, 4, 0.9), rgba(106, 46, 10, 0.9)),
+                        url('https://picsum.photos/seed/restaurantfood/1600/600.jpg') center/cover;
+            color: var(--cream-color);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .menu-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .menu-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--cream-color);
+        }
+        
+        .menu-hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .menu-search {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+        
+        .menu-search input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-dark);
+        }
+        
+        .menu-search button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: var(--cream-color);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-search button:hover {
+            background: var(--accent-color);
+        }
+        
+        .menu-section {
+            padding: 4rem 2rem;
+            background-color: var(--cream-color);
+        }
+        
+        .menu-section:nth-child(even) {
+            background-color: var(--light-cream);
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .menu-item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item:hover .menu-item-image {
+            transform: scale(1.05);
+        }
+        
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+        
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .menu-item-title {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+        
+        .menu-item-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .menu-item-description {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .menu-item-badges {
+            margin-bottom: 1rem;
+        }
+        
+        .menu-item-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+        }
+        
+        .menu-item-badge.veg {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+        }
+        
+        .menu-item-badge.non-veg {
+            background: linear-gradient(135deg, #f8d7da, #f5c6cb);
+            color: #721c24;
+        }
+        
+        .menu-item-badge.popular {
+            background: linear-gradient(135deg, var(--accent-color), #ffed4e);
+            color: var(--text-dark);
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .rating i {
+            color: var(--accent-color);
+        }
+        
+        .menu-item-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .add-to-cart-btn {
+            flex: 1;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--primary-color), #ff8c42);
+            color: var(--cream-color);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .add-to-cart-btn:hover {
+            background: linear-gradient(135deg, #ff8c42, var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+        }
+        
+        .add-to-cart-btn.added {
+            background: linear-gradient(135deg, #28a745, #20c997);
+        }
+        
+        .wishlist-btn {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 0.5rem;
+        }
+        
+        .wishlist-btn:hover {
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+        
+        .wishlist-btn.active {
+            color: var(--primary-color);
+        }
+        
+        .menu-note {
+            background: var(--light-cream);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        
+        .menu-note h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .menu-note p {
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .load-more {
+            display: block;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: var(--cream-color);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .load-more:hover {
+            background: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .no-results i {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .explore-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--accent-color);
+            color: var(--text-dark);
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .explore-btn:hover {
+            background: var(--primary-color);
+            color: var(--cream-color);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .menu-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-utensils"></i>
+                <div class="logo-text">
+                    <span class="logo-title">Arabic savory</span>
+                    <p class="logo-tagline">The Taste of Tradition with a Touch of Innovation</p>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li>
+                    <button class="book-table-btn" onclick="openBookingModal()">
+                        Book Table
+                    </button>
+                </li>
+                <li>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        Cart
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-basket"></i>
+                <p>Your cart is empty</p>
+                <p>Add delicious items from our menu!</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="cart-total-price" id="cartTotal">₹0</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Menu Hero Section -->
+    <section class="menu-hero">
+        <div class="menu-hero-content">
+            <h1>Our Exquisite Menu</h1>
+            <p>
+                A celebration of spices, flavors, and tradition.
+                Discover over 250 varieties of dishes crafted with love and expertise.
+            </p>
+
+            <div class="menu-search">
+                <input
+                    type="text"
+                    id="menuSearch"
+                    placeholder="Search for dishes..."
+                >
+                <button type="button" onclick="performSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="section active">
+        <div class="menu-container">
+
+            <!-- Category Filters -->
+            <div class="category-filters">
+                <button class="filter-btn active" onclick="filterMenu('all')">All Items</button>
+                <button class="filter-btn" onclick="filterMenu('veg')">Vegetarian</button>
+                <button class="filter-btn" onclick="filterMenu('non-veg')">Non-Vegetarian</button>
+                <button class="filter-btn" onclick="filterMenu('starters')">Starters</button>
+                <button class="filter-btn" onclick="filterMenu('drinks')">Drinks</button>
+                <button class="filter-btn" onclick="filterMenu('wishlist')">Wishlist</button>
+            </div>
+
+            <!-- Menu Grid -->
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items injected by JS -->
+            </div>
+
+            <!-- Menu Note -->
+            <div class="menu-note">
+                <h3>Allergen Information</h3>
+                <p>
+                    Please inform our staff about any food allergies or dietary restrictions.
+                    While we take precautions to prevent cross-contamination, we cannot guarantee
+                    that our food is completely free from allergens.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeBookingModal()">
+                <i class="fas fa-times"></i>
+            </span>
+
+            <h2>Book Your Table</h2>
+
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="time">Time</label>
+                    <input type="time" id="time" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <select id="guests" required>
+                        <option value="">Select</option>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5 People</option>
+                        <option value="6">6 People</option>
+                        <option value="7">7+ People</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="special-requests">Special Requests</label>
+                    <textarea id="special-requests" rows="3"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Confirm Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        <span id="successText">Success!</span>
+    </div>
+     <script>
+/* ================= MENU DATA ================= */
+const menuItems = [
+            // Vegetarian Main Courses
+    { id: 1, name: "Paneer Tikka", price: 299, category: "veg", type: "veg", description: "Soft cottage cheese marinated in spices and grilled", rating: 4.5, image: "https://i.pinimg.com/1200x/42/40/00/424000ebbdd51a3a637b395635e9c488.jpg" },
+    { id: 2, name: "Dal Makhani", price: 249, category: "veg", type: "veg", description: "Creamy black lentils cooked overnight", rating: 4.7, image: "https://i.pinimg.com/1200x/2a/8e/57/2a8e57bc82908377e58203bfd9f95e84.jpg" },
+    { id: 3, name: "Vegetable Biryani", price: 279, category: "veg", type: "veg", description: "Fragrant rice with mixed vegetables and spices", rating: 4.6, image: "https://i.pinimg.com/1200x/5e/ef/26/5eef26f2d61a1b859329bd30ba456319.jpg" },
+    { id: 4, name: "Palak Paneer", price: 259, category: "veg", type: "veg", description: "Cottage cheese in creamy spinach gravy", rating: 4.4, image: "https://i.pinimg.com/1200x/2d/5f/d7/2d5fd799b3d6714c22f49c94531ad033.jpg" },
+    { id: 5, name: "Malai Kofta", price: 289, category: "veg", type: "veg", description: "Dumplings in rich creamy gravy", rating: 4.5, image: "https://i.pinimg.com/1200x/b0/aa/a4/b0aaa4cdf8103e50e74f675f25207332.jpg" },
+    { id: 7, name: "Chole Masala", price: 229, category: "veg", type: "veg", description: "Spicy chickpeas in onion tomato gravy", rating: 4.5, image: "https://i.pinimg.com/736x/10/99/f2/1099f22e87d37fefcbe03c4aea18786d.jpg" },
+    { id: 8, name: "Mushroom fry", price: 269, category: "veg", type: "veg", description: "Mushrooms with double onions in spicy gravy", rating: 4.4, image: "https://i.pinimg.com/1200x/18/3e/69/183e69f7122f4bbec0853615d234529e.jpg" },
+    { id: 9, name: "Kadhai Paneer", price: 299, category: "veg", type: "veg", description: "Cottage cheese in bell pepper gravy", rating: 4.6, image: "https://i.pinimg.com/736x/bf/3b/22/bf3b22653efb4bcf54d76ffec4df1fd5.jpg" },
+    
+           // Non-Vegetarian Main Courses
+    { id: 11, name: "Chicken Tikka", price: 329, category: "non-veg", type: "non-veg", description: "Tender chicken marinated in yogurt and spices", rating: 4.7, image: "https://i.pinimg.com/1200x/b2/6a/7b/b26a7b875d49fe631e09c487fb935c99.jpg" },
+    { id: 12, name: "Butter Chicken", price: 349, category: "non-veg", type: "non-veg", description: "Chicken in creamy tomato butter gravy", rating: 4.8, image: "https://i.pinimg.com/1200x/c7/f2/22/c7f222c626e3c44173eecbbfbcd18f1c.jpg" },
+    { id: 14, name: "Fish Curry", price: 389, category: "non-veg", type: "non-veg", description: "Fresh fish in spicy coconut curry", rating: 4.5, image: "https://i.pinimg.com/1200x/ee/16/a6/ee16a684221c84d260b8c5c1e398db43.jpg" },
+    { id: 15, name: "Mutton Biryani", price: 449, category: "non-veg", type: "non-veg", description: "Aromatic basmati rice with tender mutton", rating: 4.7, image: "https://i.pinimg.com/1200x/ea/ca/77/eaca7783069cbd17bdb02f8dc5e448ed.jpg" },
+    { id: 17, name: "Egg Curry", price: 259, category: "non-veg", type: "non-veg", description: "Hard boiled eggs in spicy onion gravy", rating: 4.4, image: "https://i.pinimg.com/1200x/98/8c/14/988c14d330598ec327e16424a37c36d3.jpg" },
+    { id: 18, name: "Prawn Masala", price: 419, category: "non-veg", type: "non-veg", description: "Prawns in spicy coconut masala", rating: 4.7, image: "https://i.pinimg.com/736x/7c/69/90/7c69908bd8828a5b8e2b9fda2006e908.jpg" },
+    { id: 19, name: "Chicken Chettinad", price: 389, category: "non-veg", type: "non-veg", description: "Spicy chicken from South India", rating: 4.8, image: "https://i.pinimg.com/736x/64/79/ae/6479ae7e8507ac3882dd6b698de459bf.jpg" },
+    { id: 20, name: "Hyderabadi Chicken", price: 359, category: "non-veg", type: "non-veg", description: "Chicken in aromatic Hyderabadi spices", rating: 4.6, image: "https://i.pinimg.com/736x/a5/60/66/a56066d31873da92c36808f3103a88f5.jpg" },
+     
+            // Starters - Vegetarian
+    { id: 21, name: "Spring Rolls", price: 189, category: "starters", type: "veg", description: "Crispy vegetable spring rolls", rating: 4.3, image: "https://i.pinimg.com/1200x/6e/30/c0/6e30c0ce304c63b176e454c72fe8b807.jpg" },
+    { id: 22, name: "Samosa", price: 99, category: "starters", type: "veg", description: "Crispy pastry with potato filling", rating: 4.4, image: "https://i.pinimg.com/1200x/1b/da/ca/1bdaca54b40441bc8a1bccc733e3ca43.jpg" },
+    { id: 23, name: "Tandoori Mushrooms", price: 219, category: "starters", type: "veg", description: "Grilled mushrooms in tandoori spices", rating: 4.5, image: "https://i.pinimg.com/1200x/99/44/6d/99446dc28e2d69dd4aa3f740d5e36f85.jpg" },
+    { id: 24, name: "Paneer Pakoda", price: 179, category: "starters", type: "veg", description: "Fried cottage cheese fritters", rating: 4.3, image: "https://i.pinimg.com/736x/79/40/ed/7940ed9e56ca28faa34f9fed6c454e8a.jpg" },
+    { id: 25, name: "Veg Cutlet", price: 159, category: "starters", type: "veg", description: "Mixed vegetable cutlets", rating: 4.2, image: "https://i.pinimg.com/736x/cc/17/b9/cc17b97e3ae6c8522551f9db7187749f.jpg" },
+    { id: 27, name: "Corn Tikki", price: 169, category: "starters", type: "veg", description: "Crispy corn patties", rating: 4.3, image: "https://i.pinimg.com/736x/a6/ff/56/a6ff563fd2a5a4140d0b02a5bf6b179e.jpg" },
+    { id: 29, name: "Stuffed Capsicum", price: 229, category: "starters", type: "veg", description: "Capsicum stuffed with cheese and spices", rating: 4.4, image: "https://i.pinimg.com/1200x/63/0d/6e/630d6e6549ff60aeb901133bf8e3fba6.jpg" },
+    { id: 30, name: "Onion Rings", price: 149, category: "starters", type: "veg", description: "Crispy battered onion rings", rating: 4.2, image: "https://i.pinimg.com/1200x/e8/fe/bf/e8febf720617dc63c7a370aa72db4ff4.jpg" },
+    
+           // Starters - Non-Vegetarian
+    { id: 31, name: "Chicken Wings", price: 259, category: "starters", type: "non-veg", description: "Spicy grilled chicken wings", rating: 4.6, image: "https://i.pinimg.com/1200x/4f/ed/02/4fed027e6c8f65e84e1ebe1fa9678018.jpg" },
+    { id: 33, name: "Chicken  Kabab", price: 279, category: "starters", type: "non-veg", description: "Minced chicken skewers", rating: 4.5, image: "https://i.pinimg.com/736x/a8/d1/4e/a8d14e2968e917b32559aab51b737dfe.jpg" },
+    { id: 36, name: "Chicken 65", price: 289, category: "starters", type: "non-veg", description: "Spicy South Indian chicken starter", rating: 4.7, image: "https://i.pinimg.com/1200x/9d/37/51/9d3751b52c4f51dbbccc38c949f258cf.jpg" },
+    { id: 37, name: "Tandoori Chicken", price: 329, category: "starters", type: "non-veg", description: "Chicken marinated in tandoori spices", rating: 4.8, image: "https://i.pinimg.com/736x/b2/d0/9f/b2d09f3a81e1b2e6d381e3ee1c96d7c4.jpg" },
+    { id: 38, name: "Lemon Chicken", price: 299, category: "starters", type: "non-veg", description: "Tangy lemon flavored chicken", rating: 4.5, image: "https://i.pinimg.com/1200x/e6/31/3d/e6313df744bf338346a00838a68e7ff2.jpg" },
+    { id: 39, name: "Chilli Chicken", price: 309, category: "starters", type: "non-veg", description: " Indo-Chinese spicy chicken", rating: 4.6, image: "https://i.pinimg.com/1200x/8a/56/32/8a56328ebca78d438efe1a8ce466fc6b.jpg" },
+     
+            // Drinks - Non-Alcoholic
+    { id: 41, name: "Mango Lassi", price: 89, category: "drinks", type: "veg", description: "Sweet yogurt drink with mango", rating: 4.6, image: "https://i.pinimg.com/1200x/34/09/9d/34099d3b61e04f41b9aac36b873dd0d4.jpg" },
+    { id: 42, name: "Fresh Lime Soda", price: 79, category: "drinks", type: "veg", description: "Refreshing lime soda with mint", rating: 4.3, image: "https://i.pinimg.com/1200x/95/5a/13/955a13881ab9c428eb525e2dfc8dbf39.jpg" },
+    { id: 43, name: "Mocktail ", price: 149, category: "drinks", type: "veg", description: "House special mixed fruit drink", rating: 4.5, image: "https://i.pinimg.com/1200x/01/6b/9b/016b9bb3e42445ea31bd731a9a95a88f.jpg" },
+    { id: 44, name: "Orange Juice", price: 99, category: "drinks", type: "veg", description: "Freshly squeezed orange juice", rating: 4.4, image: "https://i.pinimg.com/1200x/b5/15/19/b5151985c607f0f2c7695b46d5d95181.jpg" },
+    { id: 45, name: "Iced Tea", price: 89, category: "drinks", type: "veg", description: "Chilled tea with lemon", rating: 4.2, image: "https://i.pinimg.com/736x/6a/a5/2e/6aa52ef43e3d97f8a2a03251b5f0cf36.jpg" },
+    { id: 46, name: "Watermelon Juice", price: 89, category: "drinks", type: "veg", description: "Fresh watermelon juice", rating: 4.3, image: "https://i.pinimg.com/1200x/59/67/e7/5967e72615a42f9c2a2500961bf49c74.jpg" },
+    { id: 47, name: "Pineapple Juice", price: 99, category: "drinks", type: "veg", description: "Sweet pineapple juice", rating: 4.4, image: "https://i.pinimg.com/1200x/4c/c4/9d/4cc49d102bf1d2a2d3590d5dea3ef19f.jpg" },
+    { id: 49, name: "Blue Lagoon", price: 139, category: "drinks", type: "veg", description: "Blue curaçao mocktail", rating: 4.4, image: "https://i.pinimg.com/1200x/4f/4c/96/4f4c96a2d14888bbe96d57d6c1102f97.jpg" },
+    { id: 50, name: "Sweet Lassi", price: 79, category: "drinks", type: "veg", description: "Traditional sweet yogurt drink", rating: 4.3, image: "https://i.pinimg.com/736x/05/0f/e8/050fe8223490912e39ff91c5007dd537.jpg" },
+    
+            // More Starters
+    { id: 51, name: "Aloo Tikki", price: 139, category: "starters", type: "veg", description: "Spiced potato patties", rating: 4.3, image: "https://i.pinimg.com/1200x/cf/4d/6e/cf4d6e68a5a6f1a6c1da9e37b38e7b94.jpg" },
+    { id: 52, name: "Gobi Manchurian", price: 189, category: "starters", type: "veg", description: "Cauliflower in Indo-Chinese style", rating: 4.4, image: "https://i.pinimg.com/1200x/5f/3b/71/5f3b717f4967b731eb80f4aabcc9f1a3.jpg" },
+    { id: 53, name: "Paneer 65", price: 249, category: "starters", type: "veg", description: "Spicy paneer starter", rating: 4.5, image: "https://i.pinimg.com/1200x/1d/3c/d4/1d3cd4fec9a0c12f8405e17272d9a50f.jpg" },
+    { id: 54, name: "Chicken Momos", price: 199, category: "starters", type: "non-veg", description: "Steamed chicken dumplings", rating: 4.4, image: "https://i.pinimg.com/1200x/e8/35/ed/e835ed89023c2a6d2d1933321d59efc4.jpg" },
+    { id: 55, name: "Veg Momos", price: 169, category: "starters", type: "veg", description: "Steamed vegetable dumplings", rating: 4.3, image: "https://i.pinimg.com/736x/ae/52/61/ae52610176a15c028d0f85229d91162e.jpg" },
+    { id: 56, name: "Fish Tikka", price: 319, category: "starters", type: "non-veg", description: "Marinated fish tikka", rating: 4.6, image: "https://i.pinimg.com/1200x/ee/c9/8f/eec98fb63940ccc154e4f58cb72c0de6.jpg" },
+    { id: 57, name: "Chicken Lollipop", price: 279, category: "starters", type: "non-veg", description: "Crispy chicken lollipops", rating: 4.5, image: "https://i.pinimg.com/736x/3c/c3/17/3cc317c6365262f9731a5eaff8903fb6.jpg" },
+    { id: 58, name: "Crispy Corn", price: 179, category: "starters", type: "veg", description: "Crispy fried corn kernels", rating: 4.2, image: "https://i.pinimg.com/736x/b0/8c/cd/b08ccd412f6066fe59ff7c81f06b9b4b.jpg" },
+    { id: 59, name: "Veg Spring Roll", price: 169, category: "starters", type: "veg", description: "Vegetable spring rolls", rating: 4.3, image: "https://i.pinimg.com/736x/11/db/7a/11db7a70ac8a71bbf7067a2608b0e4ad.jpg" },
+            { id: 60, name: "Egg Roll", price: 189, category: "starters", type: "non-veg", description: "Egg wrapped in paratha", rating: 4.4, image: "https://i.pinimg.com/1200x/e3/a9/d3/e3a9d35be13688277359a43cd8574f70.jpg" },
+            
+            // More Main Courses
+    { id: 61, name: "Mix Veg", price: 219, category: "veg", type: "veg", description: "Mixed vegetables in gravy", rating: 4.3, image: "https://i.pinimg.com/1200x/2e/ec/6f/2eec6ffaf159c455e2006c1d60e7bc1c.jpg" },
+    { id: 62, name: "Aloo Gobi", price: 199, category: "veg", type: "veg", description: "Potato and cauliflower curry", rating: 4.2, image: "https://i.pinimg.com/736x/80/76/54/807654da793fa73fe787433d4a5ce1fb.jpg" },
+    { id: 64, name: "Chicken Pyaa", price: 339, category: "non-veg", type: "non-veg", description: "Chicken with double onions", rating: 4.5, image: "https://i.pinimg.com/1200x/34/20/02/3420028c78837297c67c318d246b782b.jpg" },
+    { id: 65, name: "Mutton Curry", price: 399, category: "non-veg", type: "non-veg", description: "Traditional mutton curry", rating: 4.6, image: "https://i.pinimg.com/736x/9b/c0/5d/9bc05d5b3db6c1eb9323fb8257a6c560.jpg" },
+    { id: 66, name: "Egg Biryani", price: 249, category: "non-veg", type: "non-veg", description: "Aromatic rice with boiled eggs", rating: 4.4, image: "https://i.pinimg.com/736x/b3/9a/04/b39a0480b46498b7c82a32b457f63e57.jpg" },
+    { id: 68, name: "Chicken Tikka Masala", price: 359, category: "non-veg", type: "non-veg", description: "Chicken tikka in creamy gravy", rating: 4.7, image: "https://i.pinimg.com/1200x/8c/9c/dc/8c9cdce9ac1b823f1505ddba0462d99d.jpg" },
+    { id: 69, name: "Veg Pulao", price: 219, category: "veg", type: "veg", description: "Fragrant vegetable rice", rating: 4.3, image: "https://i.pinimg.com/736x/bf/06/d2/bf06d2a087fe319366289f63dfddac99.jpg" },
+    { id: 70, name: "Jeera Rice", price: 179, category: "veg", type: "veg", description: "Basmati rice with cumin", rating: 4.2, image: "https://i.pinimg.com/1200x/67/e4/70/67e470550cb9b8d83d5e6908756dc17a.jpg" },
+    
+           // More Drinks
+    { id: 71, name: "Strawberry Shake", price: 119, category: "drinks", type: "veg", description: "Fresh strawberry milkshake", rating: 4.5, image: "https://i.pinimg.com/1200x/ee/fe/1b/eefe1bbde93048962c4095f12c9b0dcf.jpg" },
+    { id: 72, name: "Chocolate Shake", price: 129, category: "drinks", type: "veg", description: "Rich chocolate milkshake", rating: 4.6, image: "https://i.pinimg.com/1200x/df/f7/fb/dff7fb444c5439c7fa59f83bcba03cef.jpg" },
+    { id: 73, name: "Vanilla Shake", price: 109, category: "drinks", type: "veg", description: "Classic vanilla milkshake", rating: 4.4, image: "https://i.pinimg.com/736x/45/d0/78/45d078f20345d7a640fdd0b8b85ed8c4.jpg" },
+    { id: 74, name: "Banana Shake", price: 99, category: "drinks", type: "veg", description: "Creamy banana milkshake", rating: 4.3, image: "https://i.pinimg.com/1200x/19/e0/89/19e089e18368520e5cfce1ed3d74ee60.jpg" },
+    { id: 75, name: "Mango Shake", price: 119, category: "drinks", type: "veg", description: "Fresh mango milkshake", rating: 4.5, image: "https://i.pinimg.com/1200x/6e/fc/a6/6efca684c374fc75f31665fe761a9955.jpg" },
+    { id: 76, name: "Cold Coffee", price: 109, category: "drinks", type: "veg", description: "Chilled coffee with ice cream", rating: 4.4, image: "https://i.pinimg.com/736x/c5/43/c1/c543c1b8c1524e2780e8692cd7ccaa0f.jpg" },
+    { id: 77, name: "Green Tea", price: 69, category: "drinks", type: "veg", description: "Refreshing green tea", rating: 4.2, image: "https://i.pinimg.com/1200x/2e/64/76/2e6476db8ea60314f4c8b78fc1436189.jpg" },
+    { id: 78, name: "Masala Tea", price: 59, category: "drinks", type: "veg", description: "Spiced Indian tea", rating: 4.3, image: "https://i.pinimg.com/1200x/21/5a/d3/215ad3108888619f42eeb5dfad483aa4.jpg" },
+    { id: 79, name: "Black Coffee", price: 79, category: "drinks", type: "veg", description: "Strong black coffee", rating: 4.2, image: "https://i.pinimg.com/736x/a5/8d/52/a58d52e58145b1e6f1be20b1447c7c24.jpg" },
+    { id: 80, name: "Coconut Water", price: 89, category: "drinks", type: "veg", description: "Fresh tender coconut water", rating: 4.3, image: "https://i.pinimg.com/1200x/36/06/7c/36067c27fca2a3bf4cf26ff8d6c5c157.jpg" }
+        ];
+
+
+        // Global Variables
+        let cart = [];
+        
+        // Additional JavaScript for menu page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set minimum date for booking to today
+            const dateInput = document.getElementById('date');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.setAttribute('min', today);
+            }
+            
+            // Add search functionality
+            const searchInput = document.getElementById('menuSearch');
+            if (searchInput) {
+                searchInput.addEventListener('keyup', function(e) {
+                    if (e.key === 'Enter') {
+                        searchMenu();
+                    }
+                });
+            }
+            
+            // Initialize menu items
+            renderMenuItems('all');
+        });
+        
+        // Search menu function
+        function searchMenu() {
+            const searchTerm = document.getElementById('menuSearch').value.toLowerCase();
+            if (!searchTerm) {
+                renderMenuItems('all');
+                return;
+            }
+            
+            const menuGrid = document.getElementById('menuGrid');
+            if (!menuGrid) return;
+            
+            menuGrid.innerHTML = '';
+            
+            const filteredItems = menuItems.filter(item => 
+                item.name.toLowerCase().includes(searchTerm) || 
+                item.description.toLowerCase().includes(searchTerm)
+            );
+            
+            if (filteredItems.length === 0) {
+                menuGrid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-search"></i>
+                        <h3>No items found</h3>
+                        <p>Try searching with different keywords</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredItems.forEach(item => {
+                const menuItemCard = createMenuItemCard(item);
+                menuGrid.appendChild(menuItemCard);
+            });
+        }
+        
+        // Filter menu function
+        function filterMenu(category) {
+            // Update active filter button
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(category) || 
+                    (category === 'all' && btn.textContent === 'All Items')) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            renderMenuItems(category);
+        }
+        
+        // Render menu items function
+        function renderMenuItems(category) {
+            const menuGrid = document.getElementById('menuGrid');
+            if (!menuGrid) return;
+            
+            menuGrid.innerHTML = '';
+            
+            let itemsToRender = [];
+            
+            if (category === 'all') {
+                itemsToRender = menuItems;
+            } else {
+                itemsToRender = menuItems.filter(item => item.category === category);
+            }
+            
+            itemsToRender.forEach(item => {
+                const menuItemCard = createMenuItemCard(item);
+                menuGrid.appendChild(menuItemCard);
+            });
+            
+            // Hide load more button if all items are displayed
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (loadMoreBtn) {
+                loadMoreBtn.style.display = itemsToRender.length < menuItems.length ? 'block' : 'none';
+            }
+        }
+        
+        // Create menu item card helper function
+        function createMenuItemCard(item) {
+            const menuItemCard = document.createElement('div');
+            menuItemCard.className = 'menu-item show';
+            
+            menuItemCard.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" class="menu-item-image">
+                <div class="menu-item-content">
+                    <div class="menu-item-header">
+                        <h3 class="menu-item-title">${item.name}</h3>
+                        <span class="menu-item-price">₹${item.price}</span>
+                    </div>
+                    <p class="menu-item-description">${item.description}</p>
+                    <div class="menu-item-badges">
+                        <span class="menu-item-badge ${item.type}">${item.type === 'veg' ? '🟢 Veg' : '🔴 Non-Veg'}</span>
+                        <span class="menu-item-badge">${item.category.charAt(0).toUpperCase() + item.category.slice(1)}</span>
+                        ${item.popular ? '<span class="menu-item-badge popular">🔥 Popular</span>' : ''}
+                    </div>
+                    ${item.rating ? `
+                    <div class="rating">
+                        ${generateStars(item.rating)}
+                        <span>${item.rating}</span>
+                    </div>
+                    ` : ''}
+                    <div class="menu-item-actions">
+                        <button class="add-to-cart-btn" onclick="addToCart(${item.id})">
+                            <i class="fas fa-plus-circle"></i> Add to Cart
+                        </button>
+                        <button class="wishlist-btn" onclick="toggleWishlist(${item.id})" id="wishlist-${item.id}">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            return menuItemCard;
+        }
+        
+        // Generate star rating function
+        function generateStars(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 !== 0;
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+        
+        // Add to cart function
+        function addToCart(itemId) {
+            // Find item in menu items
+            const item = menuItems.find(i => i.id === itemId);
+            if (!item) return;
+            
+            const existingItem = cart.find(i => i.id === itemId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+            
+            updateCart();
+            showSuccessMessage(`${item.name} added to cart!`);
+            
+            // Animate button
+            if (event && event.target) {
+                event.target.classList.add('added');
+                setTimeout(() => {
+                    event.target.classList.remove('added');
+                }, 500);
+            }
+        }
+        
+        // Update cart function
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            if (!cartItems || !cartCount || !cartTotal) return;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-basket"></i>
+                        <p>Your cart is empty</p>
+                        <p>Add delicious items from our menu!</p>
+                    </div>
+                `;
+                cartCount.textContent = '0';
+                cartTotal.textContent = '₹0';
+            } else {
+                let cartHTML = '';
+                let totalItems = 0;
+                let totalPrice = 0;
+                
+                cart.forEach(item => {
+                    cartHTML += `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-price">₹${item.price}</div>
+                            </div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    totalItems += item.quantity;
+                    totalPrice += item.price * item.quantity;
+                });
+                
+                cartItems.innerHTML = cartHTML;
+                cartCount.textContent = totalItems;
+                cartTotal.textContent = `₹${totalPrice.toFixed(2)}`;
+            }
+            
+            saveCartToStorage();
+        }
+        function updateCartUI() {
+    // logic
+}
+
+// ADD THIS HERE 👇
+function checkout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty");
+        return;
+    }
+
+    localStorage.setItem("cartItems", JSON.stringify(cart));
+    localStorage.setItem("cartTotal", cartTotal);
+
+    window.location.href = "checkout.html";
+}
+        // Update quantity function
+        function updateQuantity(itemId, change) {
+            const item = cart.find(i => i.id === itemId);
+            if (!item) return;
+            
+            item.quantity += change;
+            
+            if (item.quantity <= 0) {
+                cart = cart.filter(i => i.id !== itemId);
+            }
+            
+            updateCart();
+        }
+        
+        // Toggle wishlist function
+        function toggleWishlist(itemId) {
+            const wishlistBtn = document.getElementById(`wishlist-${itemId}`);
+            if (!wishlistBtn) return;
+            
+            const icon = wishlistBtn.querySelector('i');
+            
+            if (icon.classList.contains('far')) {
+                // Add to wishlist
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+                wishlistBtn.classList.add('active');
+                showSuccessMessage('Item added to wishlist!');
+            } else {
+                // Remove from wishlist
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+                wishlistBtn.classList.remove('active');
+                showSuccessMessage('Item removed from wishlist!');
+            }
+        }
+        
+        // Load more items function
+        let itemsLoaded = 12; // Initial number of items to load
+        const itemsPerLoad = 6;
+        
+        function loadMoreItems() {
+            const menuGrid = document.getElementById('menuGrid');
+            if (!menuGrid) return;
+            
+            const currentItems = menuGrid.querySelectorAll('.menu-item').length;
+            
+            if (currentItems >= menuItems.length) {
+                document.getElementById('loadMoreBtn').style.display = 'none';
+                return;
+            }
+            
+            const nextItems = menuItems.slice(currentItems, currentItems + itemsPerLoad);
+            
+            nextItems.forEach(item => {
+                const menuItemCard = createMenuItemCard(item);
+                menuGrid.appendChild(menuItemCard);
+            });
+            
+            if (menuGrid.querySelectorAll('.menu-item').length >= menuItems.length) {
+                document.getElementById('loadMoreBtn').style.display = 'none';
+            }
+        }
+        
+        // Save cart to local storage
+        function saveCartToStorage() {
+            localStorage.setItem('flavorHavenCart', JSON.stringify(cart));
+        }
+        
+        // Load cart from local storage
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('flavorHavenCart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+        }
+        
+        // Initialize with a limited number of items
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuGrid = document.getElementById('menuGrid');
+            if (menuGrid) {
+                menuGrid.innerHTML = '';
+                
+                // Load only the first 12 items initially
+                const initialItems = menuItems.slice(0, itemsLoaded);
+                initialItems.forEach(item => {
+                    const menuItemCard = createMenuItemCard(item);
+                    menuGrid.appendChild(menuItemCard);
+                });
+                
+                // Hide load more button if there are no more items to load
+                if (menuItems.length <= itemsLoaded) {
+                    const loadMoreBtn = document.getElementById('loadMoreBtn');
+                    if (loadMoreBtn) {
+                        loadMoreBtn.style.display = 'none';
+                    }
+                }
+            }
+            
+            // Load cart from local storage
+            loadCartFromStorage();
+        });
+        
+        // Cart functionality
+        function toggleCart() {
+            const cartSidebar = document.getElementById('cartSidebar');
+            cartSidebar.classList.toggle('show');
+        }
+        
+        function checkout() {
+            if (cart.length === 0) {
+                showSuccessMessage('Your cart is empty!');
+                return;
+            }
+            
+            // This would normally redirect to a checkout page
+            showSuccessMessage('Redirecting to checkout...');
+            setTimeout(() => {
+                window.location.href = 'checkout.html';
+            }, 1500);
+        }
+        
+        // Modal functionality
+        function openBookingModal() {
+            document.getElementById('bookingModal').classList.add('show');
+        }
+        
+        function closeBookingModal() {
+            document.getElementById('bookingModal').classList.remove('show');
+        }
+        
+        // Success message functionality
+        function showSuccessMessage(message) {
+            const successMessage = document.getElementById('successMessage');
+            const successText = document.getElementById('successText');
+            
+            successText.textContent = message;
+            successMessage.classList.add('show');
+            
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Handle booking form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingForm = document.getElementById('bookingForm');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const phone = document.getElementById('phone').value;
+                    const date = document.getElementById('date').value;
+                    const time = document.getElementById('time').value;
+                    const guests = document.getElementById('guests').value;
+                    
+                    // Here you would normally send this data to a server
+                    // For now, we'll just show a success message
+                    showSuccessMessage(`Table booked successfully for ${name} on ${date} at ${time} for ${guests} guests!`);
+                    
+                    // Reset form and close modal
+                    bookingForm.reset();
+                    closeBookingModal();
+                });
+            }
+        });
+        // Search menu function
+function searchMenu() {
+    const searchTerm = document.getElementById('menuSearch').value.toLowerCase();
+    if (!searchTerm) {
+        renderMenuItems('all');
+        return;
+    }
+    
+    const menuGrid = document.getElementById('menuGrid');
+    if (!menuGrid) return;
+    
+    menuGrid.innerHTML = '';
+    
+    const filteredItems = menuItems.filter(item => 
+        item.name.toLowerCase().includes(searchTerm) || 
+        item.description.toLowerCase().includes(searchTerm)
+    );
+    
+    if (filteredItems.length === 0) {
+        menuGrid.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-search"></i>
+                <h3>No items found</h3>
+                <p>Try searching with different keywords</p>
+            </div>
+        `;
+        return;
+    }
+    
+    filteredItems.forEach(item => {
+        const menuItemCard = createMenuItemCard(item);
+        menuGrid.appendChild(menuItemCard);
+    });
+}
+
+// Search functionality
+function searchMenu() {
+    const searchTerm = document.getElementById('menuSearch').value.toLowerCase().trim();
+    
+    // If search term is empty, show all items
+    if (!searchTerm) {
+        renderMenuItems('all');
+        return;
+    }
+    
+    const menuGrid = document.getElementById('menuGrid');
+    if (!menuGrid) return;
+    
+    menuGrid.innerHTML = '';
+    
+    // Filter items based on search term
+    const filteredItems = menuItems.filter(item => 
+        item.name.toLowerCase().includes(searchTerm) || 
+        item.description.toLowerCase().includes(searchTerm) ||
+        item.category.toLowerCase().includes(searchTerm)
+    );
+    
+    // Show no results message if no items match
+    if (filteredItems.length === 0) {
+        menuGrid.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-search"></i>
+                <h3>No items found</h3>
+                <p>Try searching with different keywords</p>
+                <button class="explore-btn" onclick="clearSearch()">Clear Search</button>
+            </div>
+        `;
+        return;
+    }
+    
+    // Render filtered items
+    filteredItems.forEach(item => {
+        const menuItemCard = createMenuItemCard(item);
+        menuGrid.appendChild(menuItemCard);
+    });
+    
+    // Hide load more button if all items are displayed
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    if (loadMoreBtn) {
+        loadMoreBtn.style.display = filteredItems.length < menuItems.length ? 'block' : 'none';
+    }
+}
+
+// Clear search function
+function clearSearch() {
+    document.getElementById('menuSearch').value = '';
+    renderMenuItems('all');
+}
+
+// Event listener for search input
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('menuSearch');
+    if (searchInput) {
+        // Add event listener for real-time search
+        searchInput.addEventListener('input', function() {
+            // Debounce search to improve performance
+            clearTimeout(searchInput.searchTimeout);
+            searchInput.searchTimeout = setTimeout(function() {
+                searchMenu();
+            }, 300);
+        });
+        
+        // Add event listener for Enter key
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                searchMenu();
+            }
+        });
+        
+        // Add event listener for Escape key to clear search
+        searchInput.addEventListener('keyup', function(e) {
+            if (e.key === 'Escape') {
+                clearSearch();
+            }
+        });
+    }
+});
+function addToWishlist(e, btn) {
+    e.preventDefault();
+
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    const name = btn.getAttribute("data-name");
+    const price = btn.getAttribute("data-price");
+
+    const exists = wishlist.find(item => item.name === name);
+
+    if (!exists) {
+        wishlist.push({ name, price });
+        btn.innerHTML = '<i class="fas fa-heart"></i>';
+        btn.style.color = '#E85D04';
+    } else {
+        wishlist = wishlist.filter(item => item.name !== name);
+        btn.innerHTML = '<i class="far fa-heart"></i>';
+        btn.style.color = '#999';
+    }
+
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+    console.log("Wishlist:", wishlist);
+}
+
+
+    </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
